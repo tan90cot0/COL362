@@ -1,0 +1,31 @@
+{% extends "index.html" %}
+
+{% block page_content %}
+
+<div class = "body_container">
+        <h4 align = 'center'>Built by students of IITD, this database contains visualising tools for all Covid-19 based data(for a certain duration) in the country and around the world. <br>As a viewer you can view all graphs, and with admin rights, you can insert and delete records from our database.</h4>
+
+        {% if admin %}
+        <br><br><br><br>
+        <h2 align = 'center'>Administrator Login</h2>
+
+        <form class = "login_form" method="post">
+                {% csrf_token %}
+        <div class="container_login">
+        <label for="uname"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" value = "{{form.uname}}">
+        
+
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw"  value = "{{form.password}}">
+        <button type="submit" class = "login">Login</button>
+        </div>
+        </form>
+
+        {% else %}
+        <br><br><br><br>
+        <h2 align = 'center'>Welcome Admin!</h2>
+        {% endif %}
+
+</div>
+{% endblock %}

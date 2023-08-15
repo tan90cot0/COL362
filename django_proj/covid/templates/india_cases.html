@@ -1,0 +1,41 @@
+{% extends "index.html" %}
+{% load static %}
+{% block page_content %}
+        
+        
+<br>
+        <div class = "container_plot">
+            <br>
+            <h1> India Covid-19 Case Counter </h1>
+            <p class = "description">Choose the start date and end date to specify the duration, and the fields to display in the graph.  
+                <br>We have data from <em>2020-01-30</em> to <em>2020-08-06</em>. </p>
+            <br>
+        <form method="post">
+            <div class = "input">
+            {% csrf_token %}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% for item in form %}
+                {% if item.label == "Confirmed" %}
+                <br><br>
+                {% endif %}
+                    {{ item.label }} {{ item }}
+                    {% if item.help_text %}
+                        {{ item.help_text|safe }}
+                    {% endif %}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endfor %}
+            </div>
+            <button type="submit" id = 'button1' >Generate Graph</button>
+        </form>
+        {% if download %}
+        <button id = 'button2'><a href = "{% static '/data/india_cases.csv' %}" style="text-decoration:none; color: black;" download>Download Selected Data</a></button>  
+        {% endif %}
+
+        {% if admin %}
+        <button id = 'button3'><a href = "http://127.0.0.1:8000/insert_data" style="text-decoration:none; color: black;">Insert data into table</a></button>  
+        {% endif %}
+        <br><br><br>
+    </div>
+        <img src="{% static '/images/india_cases.png' %}" alt="My image" class="center">
+
+{% endblock %}

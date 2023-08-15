@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+
+{% block page_content %}
+
+        <h1>Insert data</h1>
+        <form method="post">
+                <div class = "input">
+                {% csrf_token %}
+                 <strong>Name of the table to insert data into:</strong> {{form.table}}
+                <br><strong>Enter all the values in a comma-separated format :</strong> {{form.data}}
+                </div>
+                <button type="submit" id = 'button1' >Submit data</button>
+            </form>
+        <br>
+        <h1>Delete data</h1>
+
+{% endblock %}
